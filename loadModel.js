@@ -1,7 +1,7 @@
 var LIVE2DCUBISMCORE = Live2DCubismCore
 //如果资源在CDN，一定要写http://或者https://否则会以本域名请求且为相对路径
 //模型的model3.json文件路径
-var baseModelPath = "http://falls.ink/res/";
+var baseModelPath = "https://live2d-1259460701.cos.ap-chengdu.myqcloud.com/res/";
 
 var modelNames = ["chuixue_3"];
 var modelPath;
