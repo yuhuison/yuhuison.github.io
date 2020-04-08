@@ -24,7 +24,7 @@ var modelHight = 450*(document.documentElement.clientHeight/632);
 
 //渲染模型的比例
 var scale = 25*(document.documentElement.clientHeight/632);
-i(document.documentElement.clientHeight>document.documentElement.clientWidth){
+if(document.documentElement.clientHeight>document.documentElement.clientWidth){
 modelWidth = 500*(document.documentElement.clientWidth/632);
 modelHight = 475*(document.documentElement.clientWidth/632);
 scale = 15*(document.documentElement.clientWidth/632);
