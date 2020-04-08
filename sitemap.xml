@@ -3,51 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>falls.ink/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>falls.ink/posts/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>falls.ink/tags/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/wxbsb/</loc>
+    <loc>falls.ink/posts/wxbsb/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>falls.ink/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/%E9%80%86%E5%90%91/</loc>
+    <loc>falls.ink/tags/%E9%80%86%E5%90%91/</loc>
     <lastmod>2020-04-06T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/hugo/</loc>
+    <loc>falls.ink/tags/hugo/</loc>
     <lastmod>2020-04-05T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/hellohugo/</loc>
+    <loc>falls.ink/posts/hellohugo/</loc>
     <lastmod>2020-04-05T14:26:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>falls.ink/categories/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>falls.ink/about/</loc>
   </url>
   
 </urlset>

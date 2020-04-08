@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Falls ink</title>
-    <link>http://localhost:1313/tags/hugo/</link>
+    <link>falls.ink/tags/hugo/</link>
     <description>Recent content in Hugo on Falls ink</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 05 Apr 2020 14:26:00 +0800</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="falls.ink/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>你好，Hugo</title>
-      <link>http://localhost:1313/posts/hellohugo/</link>
+      <link>falls.ink/posts/hellohugo/</link>
       <pubDate>Sun, 05 Apr 2020 14:26:00 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/hellohugo/</guid>
+      <guid>falls.ink/posts/hellohugo/</guid>
       <description>技术创造爱 Hello World 之前一直使用简书写写文章，石墨文档编辑，偶尔发发微博，现在心血来潮突然想建一个博客，网上粗略找了一点教程，还是觉得用Hugo来做吧。 主题随便筛选了</description>
     </item>
     
