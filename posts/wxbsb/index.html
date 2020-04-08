@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Falls"/>
+
+  
+  <meta name="description" content=" 无限宝创造了世界&amp;hellip;..
+ 今年寒假的格局，是与往年不同的，林林总总多了些网课，有人自然欣喜，但对于我这种自制力极差的人来说&amp;hellip;.还是整点活吧？
+"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="http://localhost:1313/posts/wxbsb/"/>
+
+  
+
+  <title>对网课软件&#39;无限宝&#39;PC端的4种破解方法的研究 &middot; Falls ink</title>
+
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico"/>
+  <link rel="stylesheet" href="http://localhost:1313/css/animate.min.css"/>
+  <link rel="stylesheet" href="http://localhost:1313/css/remixicon.css"/>
+  <link rel="stylesheet" href="http://localhost:1313/css/zozo.css"/>
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于我</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="http://localhost:1313">
+          <span>Falls ink</span>
+          <img src="http://localhost:1313/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">&lt;/&gt;</p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/yuhuison" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="https://weibo.com/yusangs/" title="weibo" target="_blank"><i class="remixicon-weibo-fill"></i></a>
+        
+        
+        <a href="http://localhost:1313/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/wxbsb/'>对网课软件&#39;无限宝&#39;PC端的4种破解方法的研究</a></h2>
+          <span class="date">2020.04.06</span>
+        </div>
+        <div class="post_content markdown"><blockquote>
+<p>无限宝创造了世界&hellip;..</p>
+</blockquote>
+<p>今年寒假的格局，是与往年不同的，林林总总多了些网课，有人自然欣喜，但对于我这种自制力极差的人来说&hellip;.还是整点活吧？</p>
+<h3 id="开端">开端</h3>
+<p>软件研究的开端，是刚开始上网课时，朋友微信上和我说无限宝这个软件的锁屏贼恶心，能不能把锁屏强制关掉，So,研究开始了。</p>
+<h2 id="首先想到的方法-hook">首先想到的方法-HOOK</h2>
+<p>Hook，也就是钩子，无限宝程序一定是用什么API然后循环调用，使得窗口置顶的吧，如果能在无限宝调用API时后拦截，并阻止它调用，应该就可以了。</p>
+<p>经过相关资料查阅，大概摸清楚了无限宝使用的API</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">SetWindowPos</span>(<span style="color:#a6e22e">hwnd</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">x</span>,<span style="color:#a6e22e">y</span>,<span style="color:#a6e22e">cx</span>,<span style="color:#a6e22e">cy</span>,<span style="color:#a6e22e">flag</span>);
+<span style="color:#75715e">//这个函数可以让无限宝窗口置顶
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">SetForeWindow</span>(<span style="color:#a6e22e">hwnd</span>);
+<span style="color:#75715e">//这个函数用来设置前景激活窗口
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">SetActiveWindow</span>(<span style="color:#a6e22e">hwnd</span>);
+<span style="color:#75715e">//这个函数用来设置激活窗口
+</span><span style="color:#75715e">//无限宝程序通过循环调用这三个函数来达到让无限宝窗口一直置顶锁屏的目的
+</span></code></pre></div><p>弄清楚具体使用的API之后，就直接上HOOK</p>
+<p>HOOK需要2个VS工程</p>
+<ul>
+<li>
+<h4 id="dll工程">DLL工程</h4>
+<p>Dll是实现HOOK转发的主体，这里使用C++，和微软官方提供的库</p>
+<p><strong>Detours</strong></p>
+<p>向VS工程里面引入 <em>detours</em>.h 并且在头文件上加入 <em>detours</em>.lib 的编译链接。</p>
+<p>在程序开头新建一个变量WINAPI的指针  <em>OldSetWindowPos</em></p>
+<p>并将 <em>SetWindowPos</em> 的地址赋值到 <em>OldSetWindowPos</em></p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">static</span> <span style="color:#a6e22e">BOOL</span> (WINAPI<span style="color:#f92672">*</span> OldSetWindowPos)(HWND hwnd,HWND inter,<span style="color:#66d9ef">int</span> x,<span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> cx,<span style="color:#66d9ef">int</span> cy ,UINT flag) <span style="color:#f92672">=</span> SetWindowPos;
+
+</code></pre></div><p>然后新建一个函数 <em>MySetWindowPos</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">BOOL WINAPI <span style="color:#a6e22e">MySetWindowPos</span>(HWND hwnd, HWND inter, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> cx, <span style="color:#66d9ef">int</span> cy, UINT flag)
+{
+	<span style="color:#66d9ef">if</span> (WXBck <span style="color:#f92672">==</span> NULL) {
+		<span style="color:#66d9ef">if</span> (FindWindowA(NULL, <span style="color:#e6db74">&#34;无限宝互动平台 V15.0&#34;</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+			WXBck <span style="color:#f92672">=</span> FindWindowA(NULL, <span style="color:#e6db74">&#34;无限宝互动平台 V15.0&#34;</span>);
+			<span style="color:#66d9ef">if</span> (hwnd <span style="color:#f92672">==</span> WXBck) {
+				<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//如果是无限宝窗口就直接返回，不进行任何操作
+</span><span style="color:#75715e"></span>			}
+		}
+	}
+	<span style="color:#66d9ef">else</span>
+	{
+		<span style="color:#66d9ef">if</span> (hwnd <span style="color:#f92672">==</span> WXBck) {
+			<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//如果是无限宝窗口就直接返回，不进行任何操作
+</span><span style="color:#75715e"></span>		}
+	}
+	<span style="color:#66d9ef">return</span> OldSetWindowPos(hwnd,inter,x,y,cx,cy,flag);
+	<span style="color:#75715e">//如果是其他窗口就调用原来的函数
+</span><span style="color:#75715e"></span>}
+
+</code></pre></div><p>之后在DLL的入口点安装HOOK，将OldSetWindowPos转发到我们自己写的MySetWindowPos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">	DetourTransactionBegin();
+	<span style="color:#75715e">//更新线程信息  
+</span><span style="color:#75715e"></span>	DetourUpdateThread(GetCurrentThread());
+	<span style="color:#75715e">//将拦截的函数附加到原函数的地址上,这里可以拦截多个函数。
+</span><span style="color:#75715e"></span>	DetourAttach(<span style="color:#f92672">&amp;</span>(PVOID<span style="color:#f92672">&amp;</span>)OldSetWindowPos, MySetWindowPos);
+</code></pre></div><p>程序结束时要关闭HOOK（这里其实要不要都无所谓）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++">	<span style="color:#75715e">//将拦截的函数从原函数的地址上解除，这里可以解除多个函数。
+</span><span style="color:#75715e"></span>	DetourDetach(<span style="color:#f92672">&amp;</span>(PVOID<span style="color:#f92672">&amp;</span>)OldSetWindowPos, MySetWindowPos);
+</code></pre></div><ul>
+<li>
+<h4 id="dll注入器">DLL注入器</h4>
+</li>
+</ul>
+<p>DLL注入器没什么好说的，网上有许多源码，这里用C#将DLL工程编译出来的DLL注入到iMeeting.exe就行了</p>
+<h3 id="其次发现的方法-修改启动参数">其次发现的方法-修改启动参数</h3>
+<p>这个方法是看到B站上 <strong>凌莞</strong> 的视频发现的</p>
+<p>无限宝启动时需要一系列参数，否则会提示 <em>“网页参数错误”</em></p>
+<p>要想修改这些参数，可以用自己写的程序，放在无限宝的目录下改名<em>iMeeting.exe</em>，然后将原来的程序命名为<em>iMeeting2.exe</em>,这样无限宝启动时会先启动我们的程序，然后我们的程序截获启动参数，修改之后，再用这些启动参数启动真正的无限宝程序。</p>
+<p>也可以有另一种方法。</p>
+<p>发现无限宝程序下面，有一个缓存文件，缓存了无限宝启动所需的所有参数。</p>
+<p>缓存目录：<em>C:\Users\用户名\AppData\Local\Winupon\Vizpower\tmp\loginmeetinglist.ini</em></p>
+<p>对缓存文件的文本进行处理之后，就可以转化为相应的参数</p>
+<p>这一部分可以看 <a href="https://github.com/yuhuison/wxbThirdLogin"><strong>WXBThirdLogin</strong></a></p>
+<h3 id="第三种方法-od暴力破解">第三种方法 OD暴力破解</h3>
+<p>OD的方法比较暴力，原理就是直接OD反编译无限宝的iMeeting.exe,把调用 窗口置顶的相关函数全部删除。</p>
+<p>OD直接打开</p>
+<p><img src="wxbsb.assets/image-20200408111345536.png" alt="image-20200408111345536"></p>
+<p>右键直接查找所有模块</p>
+<p><img src="wxbsb.assets/image-20200408111909497.png" alt="image-20200408111909497"></p>
+<p>找到之后查找所有引用，把引用的地方全部Nop掉就OK了。</p>
+<h3 id="未曾设想的道路">未曾设想的道路</h3>
+<p>既然启动参数是登陆时候获取的，那能不能拦截登陆时候返回的封包，修改成我们需要的呢？理论上是可以的</p>
+<p>但是无限宝登陆程序不走Fiddler代理，就没办法使用Fiddler.core库来拦截修改封包</p>
+<p>应该也有其他的方法来拦截网络封包，比如使用DLL注入拦截WSARECV函数，或者使用网卡级代理过滤器，也应该可以，更可以直接HOST重定向到我们的虚拟代理服务器。这些都是可行的</p>
+<h3 id="其他的修改-od修改无限宝权限">其他的修改-OD修改无限宝权限</h3>
+<p>这里直接贴记录</p>
+<p>Micks 2020/03/25 21:46:16<br>
+嗯好<br>
+Micks 2020/03/25 21:46:17<br>
+我说一下<br>
+Micks 2020/03/25 21:46:39<br>
+就是根据日志文件，发现输出日志时 会输出角色的数据<br>
+Micks 2020/03/25 21:46:48<br>
+<img src="wxbsb.assets/image-20200408112459150.png" alt="image-20200408112459150"><br>
+Micks 2020/03/25 21:46:54<br>
+有了具体的文本就行了<br>
+Micks 2020/03/25 21:46:57<br>
+直接上OD<br>
+Micks 2020/03/25 21:47:02<br>
+<img src="wxbsb.assets/DJ%25M5BA$%5D1%5D4QY@ZKK%259%7DN.png" alt="img"><br>
+Micks 2020/03/25 21:47:08<br>
+查找字符串查找这一段<br>
+Micks 2020/03/25 21:47:19<br>
+<img src="wxbsb.assets/image-20200408112525069.png" alt="image-20200408112525069"><br>
+Micks 2020/03/25 21:47:21<br>
+找到之后<br>
+Micks 2020/03/25 21:47:43<br>
+<img src="wxbsb.assets/image-20200408112544194.png" alt="image-20200408112544194"><br>
+Micks 2020/03/25 21:48:06<br>
+发现输出的地方有4个参数，最后一个参数 也就是我们的角色类型role对应的应该是第一个push<br>
+Micks 2020/03/25 21:48:21<br>
+<img src="wxbsb.assets/image-20200408112602521.png" alt="image-20200408112602521"><br>
+Micks 2020/03/25 21:48:47<br>
+这里就是将role赋值到第四个参数<br>
+Micks 2020/03/25 21:49:11<br>
+就明确role 其实 是 arg.1 往右移 4个单位的指针所指的值<br>
+Micks 2020/03/25 21:49:22<br>
+这时候我们想改这个值<br>
+Micks 2020/03/25 21:49:35<br>
+发现程序里面没有修改的位置了<br>
+Micks 2020/03/25 21:49:49<br>
+这时候日志就派上用场了<br>
+Micks 2020/03/25 21:50:02<br>
+往前翻 翻到一个输出日志的地方<br>
+Micks 2020/03/25 21:50:16<br>
+<img src="wxbsb.assets/image-20200408112614586.png" alt="image-20200408112614586"><br>
+Micks 2020/03/25 21:50:30<br>
+反正输不输出日志对程序运行无影响<br>
+Micks 2020/03/25 21:50:34<br>
+所以直接NOP<br>
+Micks 2020/03/25 21:50:48<br>
+<img src="wxbsb.assets/image-20200408112632477.png" alt="image-20200408112632477"><br>
+Micks 2020/03/25 21:51:09<br>
+这样就有大量足够的空间让我们将自己写的代码写到程序里面了<br>
+Micks 2020/03/25 21:51:34<br>
+照搬这段<br>
+<img src="wxbsb.assets/image-20200408112648470.png" alt="image-20200408112648470"><br>
+Micks 2020/03/25 21:52:30<br>
+然后写汇编<br>
+mov eax,[arg.1]<br>
+mov word ptr ds:[eax+0x4],0x8<br>
+Micks 2020/03/25 21:52:39<br>
+这里的0x8就是主讲代表的role<br>
+Micks 2020/03/25 21:53:08<br>
+整个过程是很清晰的，就是OD破解的一般思路<br>
+Micks 2020/03/25 21:53:43<br>
+定位-可以直接改就直接改-不能改就自己加代码-没有空间补空间<br>
+Micks 2020/03/25 21:53:55<br>
+就算我们找不到输出日志的地方来拓宽空间<br>
+Micks 2020/03/25 21:53:59<br>
+还可以用斗转星移<br>
+Micks 2020/03/25 21:54:11<br>
+在程序尾部找一段空白区域<br>
+Micks 2020/03/25 21:54:14<br>
+自己写一个函数<br>
+Micks 2020/03/25 21:54:20<br>
+将原函数转过去<br>
+Micks 2020/03/25 21:54:27<br>
+但是这里有空间就直接用了<br>
+Micks 2020/03/25 21:54:55<br>
+整个过程大概这样<br>
+Micks 2020/03/25 21:56:09<br>
+之前很久没想到是因为，完全不知道该怎么定位</p></div>
+        <div class="post_footer">
+          
+          <div class="meta">
+            <div class="info">
+              <span class="field tags">
+                <i class="remixicon-stack-line"></i>
+                
+                <a href="http://localhost:1313/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+                
+                <a href="http://localhost:1313/tags/%E9%80%86%E5%90%91/">逆向</a>
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>&lt;/&gt;</span>
+  </div>
+</footer>
+
+
+
+<script src="http://localhost:1313/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:1313/js/zozo.js"></script>
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<link  href="http://localhost:1313/css/fancybox.min.css" rel="stylesheet">
+<script src="http://localhost:1313/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>
