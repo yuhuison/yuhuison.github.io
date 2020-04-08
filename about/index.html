@@ -137,6 +137,7 @@
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
+
 <footer class="footer">
   <div class="powered_by">
     <a href="https://zeuk.me">Designed by Zeuk,</a>
@@ -147,8 +148,19 @@
     <span>&lt;/&gt;</span>
   </div>
 </footer>
-
-
+<div id="live2d">
+       <canvas style="background:rgba(255,255,255,0);position:fixed ;bottom:0px;float: left;top:400px;left:0px;pointer-events:none;" id="l2dc" ></canvas>
+ </div>
+    <script src="http://falls.ink/pixi/pixi.min.js"></script>
+    <script src="http://falls.ink/core/live2dcubismcore.min.js"></script>
+    <script src="http://falls.ink/framework/live2dcubismframework.js"></script>
+    <script src="http://falls.ink/framework/live2dcubismpixi.js"></script>
+    <script src="http://falls.ink/loadModel.js"></script> 
+    <script>
+loadModel();
+        var view=document.getElementById("l2dc");
+        view.style.top=(document.documentElement.clientHeight-modelHight)+"px";
+    </script>
 
 <script src="http://falls.ink/js/jquery-3.3.1.min.js"></script>
 <script src="http://falls.ink/js/zozo.js"></script>
