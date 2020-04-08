@@ -29,7 +29,10 @@
       <pubDate>Sun, 05 Apr 2020 14:26:00 +0800</pubDate>
       
       <guid>http://falls.ink/posts/hellohugo/</guid>
-      <description>技术创造爱 Hello World 之前一直使用简书写写文章，石墨文档编辑，偶尔发发微博，现在心血来潮突然想建一个博客，网上粗略找了一点教程，还是觉得用Hugo来做吧。 主题随便筛选了</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;技术创造爱&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之前一直使用简书写写文章，石墨文档编辑，偶尔发发微博，现在心血来潮突然想建一个博客，网上粗略找了一点教程，还是觉得用Hugo来做吧。&lt;/p&gt;</description>
     </item>
     
   </channel>
