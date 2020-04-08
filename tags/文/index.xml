@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文 on Falls ink</title>
+    <link>http://falls.ink/tags/%E6%96%87/</link>
+    <description>Recent content in 文 on Falls ink</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 07 Mar 2020 14:26:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://falls.ink/tags/%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>小说《一匹马，一把剑，一坛酒》</title>
+      <link>http://falls.ink/posts/xiaai/</link>
+      <pubDate>Sat, 07 Mar 2020 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/posts/xiaai/</guid>
+      <description>武侠，是大人们看的童话。 感谢各位好友的意见和建议。 一开始只是疫情无聊写着玩玩 序言部分非原创，改写的。 序 很久很久以前，我有一匹马，一把剑，一坛酒。 马是好马，古人云</description>
+    </item>
+    
+  </channel>
+</rss>
