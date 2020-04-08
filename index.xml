@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Falls ink</title>
-    <link>falls.ink/</link>
+    <link>/</link>
     <description>Recent content on Falls ink</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 06 Apr 2020 14:26:00 +0800</lastBuildDate>
     
-	<atom:link href="falls.ink/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>对网课软件&#39;无限宝&#39;PC端的4种破解方法的研究</title>
-      <link>falls.ink/posts/wxbsb/</link>
+      <link>/posts/wxbsb/</link>
       <pubDate>Mon, 06 Apr 2020 14:26:00 +0800</pubDate>
       
-      <guid>falls.ink/posts/wxbsb/</guid>
+      <guid>/posts/wxbsb/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;无限宝创造了世界&amp;hellip;..&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -25,19 +25,19 @@
     
     <item>
       <title>你好，Hugo</title>
-      <link>falls.ink/posts/hellohugo/</link>
+      <link>/posts/hellohugo/</link>
       <pubDate>Sun, 05 Apr 2020 14:26:00 +0800</pubDate>
       
-      <guid>falls.ink/posts/hellohugo/</guid>
+      <guid>/posts/hellohugo/</guid>
       <description>技术创造爱 Hello World 之前一直使用简书写写文章，石墨文档编辑，偶尔发发微博，现在心血来潮突然想建一个博客，网上粗略找了一点教程，还是觉得用Hugo来做吧。 主题随便筛选了</description>
     </item>
     
     <item>
       <title>关于我</title>
-      <link>falls.ink/about/</link>
+      <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>falls.ink/about/</guid>
+      <guid>/about/</guid>
       <description>Falls( 秋小十 ) 关于我：Falls (秋小十) 十八线小县城，（目前）高三 爱好研究一些无聊的东西，写一些无聊的文章，做一个无聊的人 坚信/格言：技术能创造爱 目前有在咕咕的项</description>
     </item>
     
