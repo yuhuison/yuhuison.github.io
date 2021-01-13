@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Falls ink</title>
+    <link>http://falls.ink/tags/</link>
+    <description>Recent content in Tags on Falls ink</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Apr 2020 14:26:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://falls.ink/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>软件</title>
+      <link>http://falls.ink/tags/%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Mon, 06 Apr 2020 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/%E8%BD%AF%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>逆向</title>
+      <link>http://falls.ink/tags/%E9%80%86%E5%90%91/</link>
+      <pubDate>Mon, 06 Apr 2020 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/%E9%80%86%E5%90%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文</title>
+      <link>http://falls.ink/tags/%E6%96%87/</link>
+      <pubDate>Sat, 07 Mar 2020 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/%E6%96%87/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>http://falls.ink/tags/html/</link>
+      <pubDate>Sat, 07 Sep 2019 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>游戏引擎</title>
+      <link>http://falls.ink/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Sat, 07 Sep 2019 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://falls.ink/tags/hugo/</link>
+      <pubDate>Fri, 05 Apr 2019 14:26:00 +0800</pubDate>
+      
+      <guid>http://falls.ink/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
