@@ -24,11 +24,7 @@ var modelHight = 450*(document.documentElement.clientHeight/632);
 
 //渲染模型的比例
 var scale = 25*(document.documentElement.clientHeight/632);
-<<<<<<< HEAD
-i(document.documentElement.clientHeight>document.documentElement.clientWidth){
-=======
 if(document.documentElement.clientHeight>document.documentElement.clientWidth){
->>>>>>> parent of 8288d6b... A1
 modelWidth = 500*(document.documentElement.clientWidth/632);
 modelHight = 475*(document.documentElement.clientWidth/632);
 scale = 15*(document.documentElement.clientWidth/632);
