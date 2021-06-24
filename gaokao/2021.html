@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <link rel="stylesheet" href="css/mdui.css">
+    <script src='js/mdui.js'></script>
+    <script>
+
+        function tj(){
+            var j;
+            j=document.getElementById('p');
+            var o;
+            o=j.value;
+            console.log(j);
+            if(o==""){
+                mdui.alert('输入内容不能为空哦~');
+            }else{
+                if(o>750){
+                    mdui.alert('你可真厉害！~~~这么高的分数我查不了呢');
+                }else{
+                    if(o<400){
+                        mdui.alert('为了节省数据处理时间,400分以下暂不支持哦');
+                    }else{
+                        window.location.href="cf2.html?fs="+o+"&v=2";
+                    }
+                }
+
+            }
+        }
+    </script>
+</head>
+<body >
+        <div class="mdui-toolbar" style="background-color: #2196f3">
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+                <span class="mdui-typo-title">高考分数分析-广西专项计划</span>
+                <div class="mdui-toolbar-spacer"></div>
+              </div>
+              <div class="mdui-container">
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <p>本程序通过历年的专项计划招生数据，以每年分数线对应的<span style="color: #2196f3">排名</span>为依据，进行计算，<span style="color: red">仅供参考！</span><br/></p>
+                        <p>参考的数据有<br/>
+                            广西2020年普通高校招生专项计划批投档分数线<br/>
+                            广西2019年普通高校招生专项计划批投档分数线<br/>
+                        <a href="http://gaokao.eol.cn/guang_xi/dongtai/201807/t20180709_1616043.shtml">广西2018年普通高校招生专项计划批投档分数线</a>
+                        <br/>
+                        <a href="http://gaokao.eol.cn/guang_xi/dongtai/201707/t20170710_1539104.shtml">广西2017年普通高校招生专项计划批投档分数线</a>
+                        <br/>
+                        <a href="http://www.gxeea.cn/view/content_1013_23321.htm">广西2018年一份一档表</a>
+                        <br/>
+                        <a href="http://www.gxeea.cn/view/content_619_22195.htm">广西2017年一份一档表</a>
+                        </p>
+                                <label class="mdui-textfield-label">输入你的高考分数(总分)</label>
+                                <input id='p' oninput = "value=value.replace(/[^\d]/g,'')" class="mdui-textfield-input" name="fs"/>
+                                <br/>
+                                <center><button  onclick="tj()" class="mdui-btn mdui-color-theme-accent mdui-ripple" style="background-color: #2196f3">提交</button></center>
+                          </div>
+                  </div>      
+</body>    
+<script>
+     mdui.mutation();
+</script>

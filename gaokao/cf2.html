@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+  <link rel="stylesheet" href="css/mdui.css">
+  <script src='js/mdui.js'></script>
+  <script src='js/vue.min.js'></script>
+  <style>
+    .card {
+      width: 100%;
+      height: 20%;
+      background-color: #e5f0f8;
+      box-shadow: 1px 1px 5px #888888;
+    }
+
+    .mdui-card {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-left: 20px;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+    }
+
+    .tag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 25px;
+      margin-left: 10px;
+      background-color: #F08080;
+      border-radius: 10px;
+      color: #f0f0f0;
+      line-height: 25px;
+    }
+  </style>
+  <script>
+    function getQueryVariable(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+      }
+      return (false);
+    }
+
+    function ex(x,u) {
+      
+      let dx=Math.floor(400/u*30);
+      console.log(x,u,x-u,dx);
+      if(Math.abs(x-u)>=dx){
+        if(x-u>0){
+          return 99.99
+        }else{
+          return 0.01
+        }
+      }
+      console.log(x-u,dx,(x-u)/dx,Math.pow((x-u)/dx,4))
+      return Math.floor((49.9+50*Math.pow((x-u)/dx,2)*(x-u)/Math.abs(x-u))*100)/100
+
+
+    }
+  </script>
+  <script>
+    var fs = getQueryVariable('fs');
+  </script>
+</head>
+
+<body style="background:#ffdede;">
+  <div id="app">
+    <div class="mdui-toolbar" style="background-color: #ffdede">
+      <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+      <span class="mdui-typo-title">高考分数分析-广西专项计划</span>
+      <div class="mdui-toolbar-spacer"></div>
+    </div>
+    <center>
+
+
+      <div class="mdui-dialog" id="exampleDialog">
+        <div class="mdui-dialog-content">
+          关于 两种拟合模型 <br />
+          <span style="color: #ee5973;">严格线性</span> : 录取分数对应的名次逐年降低,各年录取排名呈线性关系,通过该关系求出线性关系参数a,这种拟合模型较严格和准确
+          <br />
+          <span style="color: #2196f3;">混合线性</span> : 录取分数对应的名次没有线性关系,分别混合求出两组数据的线性关系参数a,然后取加权平均值
+          <br />
+          无论何种模型,由于样本数少,均只能作为参考
+          <br />
+          作者联系方式468333768
+        </div>
+        <div class="mdui-dialog-actions">
+          <button class="mdui-btn mdui-ripple" mdui-dialog-close>知道了</button>
+        </div>
+      </div>
+      <div class="mdui-dialog" id="exampleDialog2">
+        <div class="mdui-dialog-content">
+          2020年的数据已经更新！ <br />
+          但是由于我找不到2019年的专项计划专业数据,所以专业用的是
+          <span style="color: #ee5973;">2018年的！</span>
+          ，仅供参考！
+          <br />
+          <span style="color: #ee5973;">仅支持专项计划的考生适用！</span>
+        </div>
+        <div class="mdui-dialog-actions">
+          <button class="mdui-btn mdui-ripple" mdui-dialog-close>知道了</button>
+        </div>
+      </div>
+
+
+      <br />
+      按照期望值从高到底排序 <a style="color: #2196f3;" mdui-dialog="{target: '#exampleDialog'}">点击查看技术原理</a> <br />
+      <span style="color:#F08080">
+        期望值: 从往年的专项计划录取分数线对应当年的排名与 你今年高考的排名相比较
+        以两者排名相等为基准(100%),根据实际的落差进行相应调整</span>
+      <br />
+      <p style="color:red">注意 ： “期望值” 只代表某种统计学数据，并不是填报被录取的概率！<br />
+        期望值越高，被该学校录取的概率越大
+        <br />仅供参考！仅供参考！仅供参考！
+      </p>
+      <p style="color:#2196f3" id='m'></p>
+      <br />
+      <div id='mq' style="color: white;" v-if="show">
+        <button @click="handleCyc" class="mdui-btn" style="background-color: red">冲一冲</button>
+        <button @click="handleWyw" class="mdui-btn" style="background-color: green">稳一稳</button>
+        <button @click="handleByb" class="mdui-btn" style="background-color: purple">保一保</button>
+        <br /><br />
+        <button @click="handleAll" class="mdui-btn" style="background-color: gray">显示全部</button>
+        <center>
+          <div class="mdui-textfield">
+            <input id='srk' v-model='input' style="width:70%" class="mdui-textfield-input" type="text"
+              placeholder="搜索专业或者学校 输入学校名称或者学校所在地名" />
+          </div><button @click="handleSx" class="mdui-btn" style="background-color: #ee5973">筛选</button>
+        </center>
+      </div>
+    </center>
+
+    <div class="mdui-container" id='list' style="display: flex;flex-direction: column;">
+      <div v-for="card in cardsdata" class="mdui-card">
+        <span style="font-size: 18px;opacity: 0.5;">院校代码 {{card.code}}&nbsp;&nbsp;<span style="font-size: 15px;">✦{{card.position}}</span></span>
+        <div style="display: flex;">
+          <span style="font-size: 24px;">{{card.school}}</span>
+          <div class="tag" v-if="card.name.indexOf('一本')>=0">一本</div>
+          <div class="tag" style="background-color: coral;" v-if="card.name.indexOf('211')>=0">211</div>
+          <div class="tag" style="background-color: cornflowerblue;" v-if="card.name.indexOf('985')>=0">985</div>
+        </div>
+        <div style="margin-top: 15px;">
+          2020年该学校最低录取分数：<span style="color:blueviolet">{{card.fs2020}}</span> &nbsp;&nbsp;对应当年排名：<span
+            style="color: red;">{{card.pm2020}}</span>
+          <br />
+          2020年对应的专项计划中排名：&nbsp;&nbsp;<span style="color: red;">{{card.zxpm2020}}</span>
+          <div style="opacity: 0.5;">
+
+            <br />
+            2019年该学校最低录取分数：<span style="color:blueviolet">{{card.fs2019}}</span> &nbsp;&nbsp;对应当年排名：<span
+              style="color: red;">{{card.pm2019}}</span>
+            <br />
+            2018年该学校最低录取分数：<span style="color:blueviolet">{{card.fs2018}}</span> &nbsp;&nbsp;对应当年排名：<span
+              style="color: red;">{{card.pm2018}}</span>
+            <br />
+            2017年该学校最低录取分数：<span style="color:blueviolet">{{card.fs2017}}</span> &nbsp;&nbsp;对应当年排名：<span
+              style="color: red;">{{card.pm2017}}</span>
+          </div>
+          <br />
+          预估今年分数线：&nbsp;<span style="color: red;text-decoration:underline">{{card.ygfs}}</span> &nbsp;
+          被录取的期望值：&nbsp;<span style="color: red;text-decoration:underline">{{card.qw}}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  mdui.mutation();
+  var gxdata = new Array();
+  var showgxdata = new Array();
+  new Vue({
+    el: '#app',
+    data: {
+      show: false,
+      cardsdata: showgxdata,
+      input:''
+    },
+    mounted: function () {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open('GET', 'h.json');
+      xmlhttp.onreadystatechange = () => {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            resdata = xmlhttp.response;
+            resdata = JSON.parse(resdata);
+            for (let i of Object.keys(resdata)) {
+              console.log(resdata[i].school, resdata[i].name, resdata[i].code);
+              resdata[i]['qw'] = ex(fs,resdata[i].ygfs);
+              gxdata.push(resdata[i]);
+
+            }
+            gxdata.sort(
+              function(a,b){
+                return a.qw-b.qw;
+              }
+            );
+            this.cardsdata = gxdata;
+            console.log(gxdata);
+            this.show = true;
+          }
+        }
+      }
+      xmlhttp.send();
+    },
+    methods:{
+      handleWyw:function(){
+        this.cardsdata=gxdata.filter(
+          function(a){
+            return (20<=a.qw)&&(a.qw<=80);
+          }
+        );
+      },
+      handleByb:function(){
+        this.cardsdata=gxdata.filter(
+          function(a){
+            return a.qw>=80;
+          }
+        );
+      },handleCyc:function(){
+        this.cardsdata=gxdata.filter(
+          function(a){
+            return (1<a.qw)&&(a.qw<=20);
+          }
+        );
+      },handleAll:function(){
+        this.cardsdata=gxdata;
+      },handleSx:function(){
+        this.cardsdata=gxdata.filter(
+          (a)=>{
+            return (a.name.indexOf(this.input)>=0);
+          }
+        );
+      }
+    }
+  })
+
+</script>
