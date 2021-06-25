@@ -61,8 +61,8 @@
           return 0.01
         }
       }
-      console.log(x-u,dx,(x-u)/dx,Math.pow((x-u)/dx,4))
-      return Math.floor((49.9+50*Math.pow((x-u)/dx,2)*(x-u)/Math.abs(x-u))*100)/100
+      if(x==u){return 50};
+      return Math.floor((49.9+50*Math.pow((x-u)/dx,2)*(x-u)/Math.abs(x-u))*100)/100;
 
 
     }
@@ -200,7 +200,7 @@
             }
             gxdata.sort(
               function(a,b){
-                return a.qw-b.qw;
+                return a.ygfs-b.ygfs;
               }
             );
             this.cardsdata = gxdata;
