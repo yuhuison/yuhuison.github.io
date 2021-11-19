@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.d4c059c3.chunk.css",
-    "main.js": "/static/js/main.4360ad07.chunk.js",
-    "main.js.map": "/static/js/main.4360ad07.chunk.js.map",
+    "main.css": "/static/css/main.ea3c2372.chunk.css",
+    "main.js": "/static/js/main.146ad451.chunk.js",
+    "main.js.map": "/static/js/main.146ad451.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.43664945.js",
     "runtime-main.js.map": "/static/js/runtime-main.43664945.js.map",
     "static/css/2.48e5491c.chunk.css": "/static/css/2.48e5491c.chunk.css",
-    "static/js/2.fe80e5ab.chunk.js": "/static/js/2.fe80e5ab.chunk.js",
-    "static/js/2.fe80e5ab.chunk.js.map": "/static/js/2.fe80e5ab.chunk.js.map",
+    "static/js/2.7f7e893c.chunk.js": "/static/js/2.7f7e893c.chunk.js",
+    "static/js/2.7f7e893c.chunk.js.map": "/static/js/2.7f7e893c.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.48e5491c.chunk.css.map": "/static/css/2.48e5491c.chunk.css.map",
-    "static/css/main.d4c059c3.chunk.css.map": "/static/css/main.d4c059c3.chunk.css.map",
-    "static/js/2.fe80e5ab.chunk.js.LICENSE.txt": "/static/js/2.fe80e5ab.chunk.js.LICENSE.txt",
+    "static/css/main.ea3c2372.chunk.css.map": "/static/css/main.ea3c2372.chunk.css.map",
+    "static/js/2.7f7e893c.chunk.js.LICENSE.txt": "/static/js/2.7f7e893c.chunk.js.LICENSE.txt",
+    "static/media/BSC.703e46ed.png": "/static/media/BSC.703e46ed.png",
+    "static/media/ETH.6840e3d9.png": "/static/media/ETH.6840e3d9.png",
     "static/media/index.css": "/static/media/Poppins-SemiBold.5981b450.ttf",
     "static/media/bg.845eeeec.png": "/static/media/bg.845eeeec.png",
     "static/media/bg21.cc0fc400.png": "/static/media/bg21.cc0fc400.png",
@@ -21,7 +23,6 @@
     "static/media/bot.4be5b0c3.png": "/static/media/bot.4be5b0c3.png",
     "static/media/error.297974f8.png": "/static/media/error.297974f8.png",
     "static/media/bootstrap.css": "/static/media/glyphicons-halflings-regular.be810be3.woff2",
-    "static/media/help.090aaa5e.png": "/static/media/help.090aaa5e.png",
     "static/media/home1.310525fe.png": "/static/media/home1.310525fe.png",
     "static/media/home2.0a9dd042.png": "/static/media/home2.0a9dd042.png",
     "static/media/home3.b4ab15f5.png": "/static/media/home3.b4ab15f5.png",
@@ -38,6 +39,7 @@
     "static/media/logoTwi_color.de7f15b3.png": "/static/media/logoTwi_color.de7f15b3.png",
     "static/media/logowhite.2c5b4f98.png": "/static/media/logowhite.2c5b4f98.png",
     "static/media/mathwallet.9618316e.png": "/static/media/mathwallet.9618316e.png",
+    "static/media/matic.a5abaa10.png": "/static/media/matic.a5abaa10.png",
     "static/media/metamask.31c2d1d3.png": "/static/media/metamask.31c2d1d3.png",
     "static/media/miniBoxLogo1.583ece7c.png": "/static/media/miniBoxLogo1.583ece7c.png",
     "static/media/miniBoxLogo2.c274d950.png": "/static/media/miniBoxLogo2.c274d950.png",
@@ -49,8 +51,8 @@
   "entrypoints": [
     "static/js/runtime-main.43664945.js",
     "static/css/2.48e5491c.chunk.css",
-    "static/js/2.fe80e5ab.chunk.js",
-    "static/css/main.d4c059c3.chunk.css",
-    "static/js/main.4360ad07.chunk.js"
+    "static/js/2.7f7e893c.chunk.js",
+    "static/css/main.ea3c2372.chunk.css",
+    "static/js/main.146ad451.chunk.js"
   ]
 }
