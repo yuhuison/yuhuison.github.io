@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <link rel="stylesheet" href="css/mdui.css">
+    <script src='js/mdui.js'></script>
+    <style>
+    .card{
+        width: 100%;
+        height: 20%;
+        background-color: #e5f0f8;
+        box-shadow: 1px 1px 5px #888888;
+    }
+    </style>
+    <script>
+        function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+var pm2019 = new Array();
+var gx2018 = new Array();
+var zy2019=new Object();
+var qjtext="";
+function jiexi(){
+    
+    var m = document.getElementById('m');
+    //console.log(pm2019);
+    m.innerHTML="&nbsp;&nbsp;你的分数为 "+fs+" 对应的排名为:"+pm2019[fs];
+    var pm=pm2019[fs];
+    for(var i in gx2018){
+        var li2018 = gx2018[i]['2018li'];
+        var li2017 = gx2018[i]['2017li'];
+        var p2019 = parseInt(gx2018[i]['2019pm']);
+        var p2018 = parseInt(gx2018[i]['2018pm']);
+        var p2017 = parseInt(gx2018[i]['2017pm']);
+        var ygpm;
+        var nhmx="";
+        //console.log(li2017)
+        if(gx2018[i]['xxmc'].indexOf("南开大学")<0){
+        if(p2019<p2018&&p2018<p2017){
+            var a=((p2017-p2018)/p2017*0.1+(p2018-p2019)/p2018*0.3);
+            nhmx='<span style="color:#F93A3A">&nbsp;&nbsp;拟合模型 : 严格线性 其中线性参数为'+(Math.ceil(a*1000)/10)+'% <br/></span>';
+            ygpm=Math.ceil(p2019-a*p2019);
+        }else{
+            var a=((p2017-p2018)/p2017*0.05+(p2018-p2019)/p2018*0.2);
+            nhmx='<span style="color:#3A61F9">&nbsp;&nbsp;拟合模型 : 混合线性 其中线性参数为'+(Math.ceil(a*1000)/10)+'% <br/></span>';
+            ygpm=Math.ceil(p2019-a*p2019);
+        }
+        }else{
+            nhmx='<span style="color:#F93A3A">&nbsp;&nbsp;该院校录取排名波动幅度极大(达100%以上) 故不提供数据参考 (锁定为10000)<br/></span>';
+            ygpm=10000;
+        }
+        gx2018[i]['nhmx']=nhmx;
+
+        var qw=ygpm/pm;
+        qw=Math.ceil(qw*10000)/100;
+        var qws='';
+        if(fs>600){
+            if(parseInt(qw)>70&&parseInt(qw)<100){
+            qws='<span style="color:red">冲一冲</span>';
+        }
+        if(parseInt(qw)>=100&&parseInt(qw)<200){
+            qws='<span style="color:green">稳一稳</span>';
+        }
+        if(parseInt(qw)>=200&&parseInt(qw)<450){
+            qws='<span style="color:purple">保一保</span>';
+        }
+        }else{
+        if(parseInt(qw)>80&&parseInt(qw)<100){
+            qws='<span style="color:red">冲一冲</span>';
+        }
+        if(parseInt(qw)>=100&&parseInt(qw)<150){
+            qws='<span style="color:green">稳一稳</span>';
+        }
+        if(parseInt(qw)>=150&&parseInt(qw)<200){
+            qws='<span style="color:purple">保一保</span>';
+        }
+        }
+        gx2018[i]['qws']=qws;
+        gx2018[i]['ygpm']=ygpm;
+        if(li2018!='0'&&li2017!='0'&&li2017!=undefined){
+           // qjtext=qjtext+"\n"+gx2018[i]['yxdm']+"#"+gx2018[i]['xxmc']+"#"+li2018+"#"+pm2018[li2018]+"#"+li2017+"#"+pm2017[li2017];
+        gx2018[i]['qw']=qw;
+        newD(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+"<br/> &nbsp;&nbsp;对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'],qw+"&nbsp;"+qws,ygpm,nhmx);
+    
+
+    }
+    }
+    document.getElementById('mq').style.visibility='visible';
+
+    //console.log(gx2018[1]['yxdm']);
+}
+var qqq=false;
+function cyc(){
+    clear();
+    var m = document.getElementById('m');
+    var pm=pm2019[fs];
+
+
+    for(var i in gx2018){
+        var li2018=gx2018[i]['2018li'];
+        var li2017=gx2018[i]['2017li'];
+        if(gx2018[i]['qws'].indexOf('冲一冲')>0){
+            newD(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+" <br/>&nbsp;&nbsp;对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'], gx2018[i]['qw']+"&nbsp;"+ gx2018[i]['qws'], gx2018[i]['ygpm'],gx2018[i]['nhmx']);
+    }
+    }
+}
+function wyw(){
+    clear();
+    var m = document.getElementById('m');
+    var pm=pm2019[fs];
+
+
+    for(var i in gx2018){
+        var li2018=gx2018[i]['2018li'];
+        var li2017=gx2018[i]['2017li'];
+        if(gx2018[i]['qws'].indexOf('稳一稳')>0){
+            newD(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+"<br/>&nbsp;&nbsp; 对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'], gx2018[i]['qw']+"&nbsp;"+ gx2018[i]['qws'], gx2018[i]['ygpm'],gx2018[i]['nhmx']);
+    }
+    }
+}
+function byb(){
+    clear();
+    var m = document.getElementById('m');
+    var pm=pm2019[fs];
+
+
+    for(var i in gx2018){
+        var li2018=gx2018[i]['2018li'];
+        var li2017=gx2018[i]['2017li'];
+        if(gx2018[i]['qws'].indexOf('保一保')>0){
+            newD(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+" <br/>&nbsp;&nbsp;对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'], gx2018[i]['qw']+"&nbsp;"+ gx2018[i]['qws'], gx2018[i]['ygpm'],gx2018[i]['nhmx']);
+    }
+    }
+}
+function xsqb(){
+    clear();
+    var m = document.getElementById('m');
+    var pm=pm2019[fs];
+
+
+    for(var i in gx2018){
+        var li2018=gx2018[i]['2018li'];
+        var li2017=gx2018[i]['2017li'];
+            newD(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+" <br/>&nbsp;&nbsp;对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'], gx2018[i]['qw']+"&nbsp;"+ gx2018[i]['qws'], gx2018[i]['ygpm'],gx2018[i]['nhmx']);
+    }
+}
+function sx(){
+    var ssnr = document.getElementById('srk').value;
+    if(ssnr!=""){
+        clear();
+        for(var i in gx2018){
+            var zy=zy2019[gx2018[i]['yxdm']];
+            if(zy.indexOf(ssnr)>0){
+                var li2018=gx2018[i]['2018li'];
+                var li2017=gx2018[i]['2017li'];
+                newD2(gx2018[i]['yxdm']+"&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+gx2018[i]['xxmc'],gx2018[i]['2019li']+"<br/>&nbsp;&nbsp; 对应当年排名"+gx2018[i]['2019pm'],li2018+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2018pm'],li2017+' <br/>&nbsp;&nbsp;对应当年排名'+gx2018[i]['2017pm'], gx2018[i]['qw']+"&nbsp;"+ gx2018[i]['qws'],ssnr,zy, gx2018[i]['ygpm']);
+            }
+        }
+    }
+}
+function clear(){
+    var q= document.getElementById('q');
+    q.innerHTML='';
+}
+function newD(h,l2019,l2018,l2017,qw,ygpm,bcnr=""){
+
+    var s='<div id="card#yxdm" class="mdui-card mdui-ripple"><br/>&nbsp;&nbsp;<div class="mdui-card-primary-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院校代码 #p</div><div class="mdui-card-content">#bcnr&nbsp;&nbsp;2019年专项计划 最低录取分数 #2019 <br/>&nbsp;&nbsp;2018年专项计划 最低录取分数 #2018 <br/> &nbsp;&nbsp;2017年专项计划 最低录取分数 #2017<br/>&nbsp;&nbsp;预估今年排名:#ygpm &nbsp;期望值 ：#qw #dy</div></div>';
+    s=s.replace('#p',h);
+    s=s.replace('#2019',l2019);
+    s=s.replace('#2018',l2018);
+    s=s.replace('#2017',l2017);
+    s=s.replace('#qw','<span style="color:red">'+qw+'</span>');
+    s=s.replace('#bcnr',bcnr);
+    s=s.replace('#ygpm','<span style="color:red">'+ygpm+'</span>');
+    s=s.replace('211高校','<span style="color:#06477c">&nbsp;211高校</span>');
+    s=s.replace('985计划','<span style="color:red">&nbsp;985计划</span>');
+    s=s.replace('双一流','');
+    s=s.replace(']&',']&nbsp;⊙');
+    var yxdm=h.split("&nbsp;");
+    s=s.replace("#dy",'&nbsp; <div class="mdui-card-actions"><button  style="color:#1F4DF9;" class="mdui-btn mdui-ripple" id="po#yxdm" onclick="MoEX('+yxdm[0]+')"> 查看该学校符合专项计划的专业</button> </div>');
+    s=s.replace('#yxdm',yxdm[0]);
+    s=s.replace('#yxdm',yxdm[0]);
+    var q= document.getElementById('q');
+    q.innerHTML=q.innerHTML+'<br/><br/>'+s;
+}
+function newD2(h,l2019,l2018,l2017,qw,ssnr,zynr,ygpm,bcnr=""){
+    var s='<div  class="mdui-card mdui-ripple"><br/><div class="mdui-card-primary-title">&nbsp;&nbsp;院校代码 #p</div><div class="mdui-card-content">#bcnr&nbsp;&nbsp;2019年专项计划 最低录取分数 #2019 <br/>&nbsp;&nbsp;2018年专项计划 最低录取分数 #2018 <br/> &nbsp;&nbsp;2017年专项计划 最低录取分数 #2017<br/>&nbsp;&nbsp;&nbsp;预估今年排名:#ygpm &nbsp;期望值 ：#qw<br/>#zy<br/>&nbsp;</div></div>';
+    s=s.replace('#p',h);
+    s=s.replace('#2019',l2019);
+    s=s.replace('#2018',l2018);
+    s=s.replace('#bcnr',bcnr);
+    s=s.replace('#2017',l2017);
+    s=s.replace('#qw',qw);
+    s=s.replace('#ygpm',ygpm);
+    s=s.replace('211高校','<span style="color:#06477c">&nbsp;211高校</span>');
+    s=s.replace('985计划','<span style="color:red">&nbsp;985计划</span>');
+    s=s.replace('双一流','');
+    s=s.replace(']&',']&nbsp;⊙');
+    zynr=zynr.replace(ssnr,'<span style="color:red">'+ssnr+"</span>");
+    //console.log(zynr);
+    s=s.replace('#zy',zynr);
+
+    var q= document.getElementById('q');
+    q.innerHTML=q.innerHTML+'<br/><br/>'+s;
+}
+function MoEX(yxdm){
+    var v=document.getElementById("po"+yxdm.toString());
+    v.style.display='none';
+    var c=document.getElementById("card"+yxdm.toString());
+    c.innerHTML=c.innerHTML+"由于我找不到2019年专项计划提供专业的数据,该界面里的专业均为2018年的！以实际为准!"+"<br/>"+zy2019[yxdm.toString()];
+}
+
+var loads=4;
+var loadfinish=0;
+function load(f){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET',f);
+    xmlhttp.f=f;
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4){
+            if(xmlhttp.status==200){
+                loadfinish++;
+                    var x=xmlhttp.response.split('|');
+                    if(this.f=='gx2.txt'){
+                        gx2018=new Array();
+                        for(var i in x){
+                            var p = x[i].split('#');
+                            console.log(p);
+                            var z=new Object();
+                            z['yxdm']=p[0];
+                            z['xxmc']=p[1];
+                            z['2019li']=p[2];
+                            z['2019pm']=p[3];
+                            z['2018li']=p[5];
+                            z['2018pm']=p[6];
+                            z['2017li']=p[7];
+                            z['2017pm']=p[8];
+                            gx2018.push(z);
+                        }
+                        //console.log(gx2018);
+                    }
+                    if(this.f=="2019li.txt"){
+                        for(var i in x){
+                            var p=x[i].split('#');
+                            pm2019[p[0]]=p[1];
+                        }
+                    }
+                    if(this.f=="zy3.txt"){
+                        
+                        for(var i in x){
+                            var p=x[i].split('$');
+                            //consoleconsole.log(p);
+                            zy2019[p[0]]=p[1];
+                        }
+                        //console.log(zy2019);
+                    }
+                    if(loadfinish==3){
+                        jiexi();
+                    }
+            }
+        }
+    }
+    xmlhttp.send();
+}
+    </script>
+    <script>
+        var fs = getQueryVariable('fs');
+        
+        var GX2017 = new Object();
+        load('gx2.txt');
+        load('2019li.txt');
+        load('zy3.txt');
+    </script>
+</head>
+<body style="background:#ffdede;">
+        <div class="mdui-toolbar" style="background-color: #ffdede">
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+                <span class="mdui-typo-title">高考分数分析-广西专项计划</span>
+                <div class="mdui-toolbar-spacer"></div>
+              </div>
+    <center>
+        
+
+<div class="mdui-dialog" id="exampleDialog">
+  <div class="mdui-dialog-content">
+      关于 两种拟合模型 <br/>
+      <span style="color: #ee5973;">严格线性</span> : 录取分数对应的名次逐年降低,各年录取排名呈线性关系,通过该关系求出线性关系参数a,这种拟合模型较严格和准确
+      <br/>      
+      <span style="color: #2196f3;">混合线性</span> : 录取分数对应的名次没有线性关系,分别混合求出两组数据的线性关系参数a,然后取加权平均值
+      <br/>
+      无论何种模型,由于样本数少,均只能作为参考
+      <br/>
+      作者联系方式468333768
+</div>
+  <div class="mdui-dialog-actions">
+    <button class="mdui-btn mdui-ripple" mdui-dialog-close>知道了</button>
+  </div>
+</div>
+<div class="mdui-dialog" id="exampleDialog2">
+    <div class="mdui-dialog-content">
+        2020年的数据已经更新！ <br/>
+        但是由于我找不到2019年的专项计划专业数据,所以专业用的是
+        <span style="color: #ee5973;">2018年的！</span> 
+        ，仅供参考！
+        <br/>
+        <span style="color: #ee5973;">仅支持专项计划的考生适用！</span> 
+  </div>
+    <div class="mdui-dialog-actions">
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>知道了</button>
+    </div>
+  </div>
+
+
+<br/>
+            按照期望值从高到底排序 <a style="color: #2196f3;" mdui-dialog="{target: '#exampleDialog'}">点击查看技术原理</a> <br/>
+            <span style="color:#F08080">
+            期望值: 从往年的专项计划录取分数线对应当年的排名与 你今年高考的排名相比较
+            以两者排名相等为基准(100%),根据实际的落差进行相应调整</span>
+            <br/>
+            <p style="color:red">注意 ： “期望值” 只代表某种统计学数据，并不是填报被录取的概率！<br/>
+            期望值越高，被该学校录取的概率越大
+            <br/>仅供参考！仅供参考！仅供参考！
+            </p>
+            <p style="color:#2196f3" id='m'></p>
+            <br/>
+            <div id='mq'  style="color: white;visibility: hidden">
+            <button onclick="cyc()" class="mdui-btn" style="background-color: red">冲一冲</button>
+            <button onclick="wyw()" class="mdui-btn" style="background-color: green">稳一稳</button>
+            <button onclick="byb()" class="mdui-btn" style="background-color: purple">保一保</button>
+            <br/><br/>
+            <button onclick="xsqb()" class="mdui-btn" style="background-color: gray">显示全部</button>
+            <center><div class="mdui-textfield">
+                <input id='srk' style="width:70%" class="mdui-textfield-input" type="text" placeholder="搜索专业或者学校 输入专业名称/学校名称 比如 计算机"/>
+              </div><button onclick="sx()" class="mdui-btn" style="background-color: #ee5973">筛选</button></center>
+            </div>
+        </center>
+    
+    <div class="mdui-container" id='q'>
+        <br/>
+
+     </div> 
+    
+</body>    
+<script>
+     mdui.mutation();
+
+</script>
